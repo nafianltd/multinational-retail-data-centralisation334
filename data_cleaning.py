@@ -29,14 +29,14 @@ class DataCleaning:
         return legacy_users_table 
     
     def clean_card_data(self, card_data_table):
-        card_data_table.replace('NULL', np.NaN, inplace=True)
+        card_data_table.replace('NULL', np.nan, inplace=True)
         card_data_table.dropna(subset=['card_number'], how='any', axis=0, inplace=True)
         card_data_table = card_data_table[~card_data_table['card_number'].str.contains('[a-zA-Z?]', na=False)]
         return card_data_table
     
     def clean_store_data(self, store_data):
         store_data = store_data.reset_index(drop=True)
-        store_data.replace('NULL', np.NaN, inplace=True)
+        store_data.replace('NULL', np.nan, inplace=True)
         store_data['opening_date'] = pd.to_datetime(store_data['opening_date'], errors ='coerce')
         store_data.loc[[31, 179, 248, 341, 375], 'staff_numbers'] = [78, 30, 80, 97, 39] # individually replaces values that have been inccorectly including text
         store_data['staff_numbers'] = pd.to_numeric(store_data['staff_numbers'], errors='coerce')
@@ -73,7 +73,7 @@ class DataCleaning:
 
     def clean_product_data(self, data):
         
-        data.replace('NULL', np.NaN, inplace=True)
+        data.replace('NULL', np.nan, inplace=True)
         data['date_added'] = pd.to_datetime(data['date_added'], errors ='coerce')
         data.dropna(subset=['date_added'], how='any', axis=0, inplace=True)
         data['weight'] = data['weight'].apply(lambda x: x.replace(' .', ''))

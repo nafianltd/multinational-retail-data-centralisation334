@@ -35,7 +35,7 @@ from sqlalchemy import create_engine
 import pandas as pd
 
 # Replace with your actual PostgreSQL credentials
-db_creds = "postgresql://postgres:Uzair123@localhost/sales_data"
+db_creds = "postgresql://postgres:@localhost/sales_data"
 
 # Example of how to upload cleaned data (assuming 'clean_user_data' is a pandas DataFrame)
 engine = create_engine(db_creds)
